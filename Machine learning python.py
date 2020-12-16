@@ -15,20 +15,17 @@ class MyAgent(MLAgent):
     
     
 
-for e in range(50, 56, 5):
-    for a in range(66, 82, 2):
-        random.seed(1)
-        print("a is ", (a/100))
-        print("e is ", (e/100))
-        my_agent = MyAgent(alpha=(a/100), epsilon=(e/100))
-        #my_agent = load('MyAgent_3000')
-        #my_agent.learning = False
+random.seed(1)
 
-        random_agent = RandomAgent()
-        train_and_plot(
-            agent=my_agent,
-            validation_agent=random_agent,
-            iterations=50,
-            trainings=100,
-            validations=1000)
+my_agent = MyAgent(alpha=(0.03), epsilon=(0.5))
+#my_agent = load('MyAgent_3000')
+#my_agent.learning = False
+
+random_agent = RandomAgent()
+train_and_plot(
+    agent=my_agent,
+    validation_agent=random_agent,
+    iterations=90,
+    trainings=100,
+    validations=1000)
 
