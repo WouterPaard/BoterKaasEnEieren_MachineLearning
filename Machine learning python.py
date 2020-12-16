@@ -1,6 +1,6 @@
 import random
  
-from bke import MLAgent, is_winner, opponent, RandomAgent, train_and_plot, load, save
+from bke import MLAgent, is_winner, opponent, RandomAgent, train_and_plot, load, save, validate, plot_validation
  
  
 class MyAgent(MLAgent):
@@ -18,8 +18,7 @@ class MyAgent(MLAgent):
 random.seed(1)
 
 my_agent = MyAgent(alpha=(0.03), epsilon=(0.5))
-#my_agent = load('MyAgent_3000')
-#my_agent.learning = False
+
 
 random_agent = RandomAgent()
 train_and_plot(
@@ -28,4 +27,14 @@ train_and_plot(
     iterations=90,
     trainings=100,
     validations=1000)
+
+my_agent.learning = False
+save(my_agent, "MyAgentHoogsteRating")
+
+
+validation_agent = RandomAgent()
+
+validation_result= validate(agent_x=my_agent, agent_o=validation_agent, iterations=100)
+plot_validation(validation_result)
+
 
